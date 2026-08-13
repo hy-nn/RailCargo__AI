@@ -1,0 +1,6 @@
+{
+  "name": "RailCargo AI",
+  "description": "Rail cargo forwarding, natural input booking, and margin analysis platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
