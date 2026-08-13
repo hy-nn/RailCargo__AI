@@ -1,0 +1,203 @@
+[
+  {
+    "bookingId": "BOOK-20260822-001",
+    "userId": "USER-SYNC-001",
+    "companyName": "싱크물류",
+    "serviceTab": "RAIL_ONLY",
+    "slotId": "SLOT-20260822-3002-BNP-OBO",
+    "poolId": "POOL-20260822-3002",
+    "bookingDeadlineDate": "2026-08-17",
+    "cargo": {
+      "description": "자동차 전장부품",
+      "packageType": "PALLET",
+      "packageCount": 4,
+      "volumeCBM": 8.5,
+      "weightKg": 3000
+    },
+    "finalDestination": {
+      "destinationText": "군포에 있는 제 창고",
+      "city": "군포시"
+    },
+    "mappedStationId": "ST-OBO",
+    "poolBefore": {
+      "cbm": 46.2,
+      "weightKg": 16000,
+      "status": "CONFIRMED"
+    },
+    "poolAfter": {
+      "cbm": 54.7,
+      "weightKg": 19000,
+      "status": "CONFIRMED"
+    },
+    "fareQuote": {
+      "containerRailFareWon": 321600,
+      "volumeShareRate": 0.141667,
+      "weightShareRate": 0.12,
+      "appliedShareRate": 0.141667,
+      "allocatedRailFareWon": 45560,
+      "originCfsChargeWon": 25000,
+      "destinationCfsChargeWon": 25000,
+      "consolidationOperationsFeeWon": 50000,
+      "truckerFareWon": 0,
+      "totalFareWon": 145560,
+      "fareScope": "DOMESTIC_RAIL_SECTION",
+      "pricingStatus": "ACTIVE_WITH_FIXED_FEES"
+    },
+    "truckerServiceId": null,
+    "globisCardId": null,
+    "carbon": {
+      "comparisonScope": "RAIL_ROUTE_ONLY",
+      "routeDistanceKm": 402.3,
+      "cargoWeightTon": 3.0,
+      "railEmissionFactorGCO2ePerTonKm": 8,
+      "truckEmissionFactorGCO2ePerTonKm": 209,
+      "railEmissionKgCO2e": 9.66,
+      "truckEmissionKgCO2e": 252.24,
+      "estimatedSavingKgCO2e": 242.58,
+      "reductionRatePercent": 96.17,
+      "calculationStatus": "CALCULATED_WITH_KORAIL_CONFIRMED_MOLIT_FACTORS",
+      "evidenceDownloadAction": "MOCK_DOWNLOAD"
+    },
+    "bookingStatus": "CONFIRMED",
+    "createdAt": "2026-08-15T10:00:00+09:00",
+    "truckerQuote": null
+  },
+  {
+    "bookingId": "BOOK-20260820-002",
+    "userId": "USER-SYNC-001",
+    "companyName": "싱크물류",
+    "serviceTab": "FULL_PACKAGE",
+    "slotId": "SLOT-20260820-3007-OBO-BNP",
+    "poolId": "POOL-20260820-3007",
+    "bookingDeadlineDate": "2026-08-15",
+    "cargo": {
+      "description": "전자부품",
+      "packageType": null,
+      "packageCount": null,
+      "volumeCBM": 11.0,
+      "weightKg": 2000
+    },
+    "finalDestination": {
+      "destinationText": "부산신항",
+      "city": "부산광역시"
+    },
+    "mappedStationId": "ST-BNP",
+    "poolBefore": {
+      "cbm": 34.4,
+      "weightKg": 2650,
+      "status": "RECRUITING"
+    },
+    "poolAfter": {
+      "cbm": 45.4,
+      "weightKg": 4650,
+      "status": "CONFIRMED"
+    },
+    "fareQuote": {
+      "containerRailFareWon": 321600,
+      "volumeShareRate": 0.183333,
+      "weightShareRate": 0.08,
+      "appliedShareRate": 0.183333,
+      "allocatedRailFareWon": 58960,
+      "originCfsChargeWon": 25000,
+      "destinationCfsChargeWon": 25000,
+      "consolidationOperationsFeeWon": 50000,
+      "truckerFareWon": 0,
+      "totalFareWon": 158960,
+      "fareScope": "DOMESTIC_RAIL_SECTION_ONLY",
+      "pricingStatus": "ACTIVE_WITH_FIXED_FEES"
+    },
+    "truckerServiceId": null,
+    "globisCardId": "GLOBIS-FWD-BNP-EXPORT-01",
+    "carbon": {
+      "comparisonScope": "RAIL_ROUTE_ONLY",
+      "routeDistanceKm": 402.3,
+      "cargoWeightTon": 2.0,
+      "railEmissionFactorGCO2ePerTonKm": 8,
+      "truckEmissionFactorGCO2ePerTonKm": 209,
+      "railEmissionKgCO2e": 6.44,
+      "truckEmissionKgCO2e": 168.16,
+      "estimatedSavingKgCO2e": 161.72,
+      "reductionRatePercent": 96.17,
+      "calculationStatus": "CALCULATED_WITH_KORAIL_CONFIRMED_MOLIT_FACTORS",
+      "evidenceDownloadAction": "MOCK_DOWNLOAD"
+    },
+    "bookingStatus": "CONFIRMED",
+    "createdAt": "2026-08-15T10:10:00+09:00",
+    "truckerQuote": null
+  },
+  {
+    "bookingId": "BOOK-20260822-003",
+    "userId": "USER-SYNC-001",
+    "companyName": "싱크물류",
+    "serviceTab": "RAIL_TRUCKER",
+    "slotId": "SLOT-20260822-3002-BNP-OBO",
+    "poolId": "POOL-20260822-3002",
+    "bookingDeadlineDate": "2026-08-17",
+    "cargo": {
+      "description": "자동차 전장부품",
+      "packageType": "PALLET",
+      "packageCount": 4,
+      "volumeCBM": 8.5,
+      "weightKg": 3000
+    },
+    "finalDestination": {
+      "destinationText": "군포 창고",
+      "city": "군포시"
+    },
+    "mappedStationId": "ST-OBO",
+    "poolBefore": {
+      "cbm": 46.2,
+      "weightKg": 16000,
+      "status": "CONFIRMED"
+    },
+    "poolAfter": {
+      "cbm": 54.7,
+      "weightKg": 19000,
+      "status": "CONFIRMED"
+    },
+    "fareQuote": {
+      "containerRailFareWon": 321600,
+      "volumeShareRate": 0.141667,
+      "weightShareRate": 0.12,
+      "appliedShareRate": 0.141667,
+      "allocatedRailFareWon": 45560,
+      "originCfsChargeWon": 25000,
+      "destinationCfsChargeWon": 25000,
+      "consolidationOperationsFeeWon": 50000,
+      "truckerFareWon": 80000,
+      "totalFareWon": 225560,
+      "fareScope": "DOMESTIC_RAIL_AND_LAST_MILE",
+      "pricingStatus": "ACTIVE_WITH_FIXED_FEES"
+    },
+    "truckerServiceId": "D2D-OBO-GUNPO-01",
+    "truckerQuote": {
+      "assignedVehicleCode": "3.5T",
+      "assignedVehicleName": "3.5톤",
+      "cargoWeightKg": 3000,
+      "cargoVolumeCBM": 8.5,
+      "distanceKm": 10,
+      "distanceBandId": "D10",
+      "distanceBandDisplayName": "10km 이내거리",
+      "oneWayFareWon": 80000,
+      "vatIncluded": false,
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "distanceNotice": "시별 평균 고정거리를 적용한 예상 운임이며, 실제 배송 주소와 대기시간·상하차 조건·통행료·특수 작업에 따라 달라질 수 있습니다."
+    },
+    "globisCardId": null,
+    "carbon": {
+      "comparisonScope": "RAIL_ROUTE_ONLY",
+      "routeDistanceKm": 402.3,
+      "cargoWeightTon": 3.0,
+      "railEmissionFactorGCO2ePerTonKm": 8,
+      "truckEmissionFactorGCO2ePerTonKm": 209,
+      "railEmissionKgCO2e": 9.66,
+      "truckEmissionKgCO2e": 252.24,
+      "estimatedSavingKgCO2e": 242.58,
+      "reductionRatePercent": 96.17,
+      "calculationStatus": "CALCULATED_WITH_KORAIL_CONFIRMED_MOLIT_FACTORS",
+      "evidenceDownloadAction": "MOCK_DOWNLOAD"
+    },
+    "bookingStatus": "CONFIRMED",
+    "createdAt": "2026-08-15T10:20:00+09:00"
+  }
+]
