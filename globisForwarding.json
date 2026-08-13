@@ -1,0 +1,44 @@
+[
+  {
+    "cardId": "GLOBIS-FWD-BNP-IMPORT-01",
+    "providerName": "현대글로비스",
+    "triggerStationId": "ST-BNP",
+    "direction": "IMPORT_DOMESTIC",
+    "serviceType": "INTERNATIONAL_FORWARDING_CONNECTION",
+    "title": "부산신항 국제포워딩 연계",
+    "description": "부산신항 도착 화물의 CFS 혼적 및 국제포워딩 서비스 연결을 문의할 수 있습니다.",
+    "includedServices": [
+      "CFS 혼적 안내",
+      "수입 포워딩 문의",
+      "내륙운송 연계 안내"
+    ],
+    "priceVisible": false,
+    "price": null,
+    "cta": {
+      "label": "글로비스 연계 문의",
+      "action": "MOCK_INQUIRY"
+    },
+    "active": true
+  },
+  {
+    "cardId": "GLOBIS-FWD-BNP-EXPORT-01",
+    "providerName": "현대글로비스",
+    "triggerStationId": "ST-BNP",
+    "direction": "EXPORT",
+    "serviceType": "INTERNATIONAL_FORWARDING_CONNECTION",
+    "title": "부산신항 수출 포워딩 연계",
+    "description": "철도 도착 후 CFS 혼적, 선적 준비 및 국제포워딩 연결을 문의할 수 있습니다.",
+    "includedServices": [
+      "CFS 혼적 안내",
+      "수출 포워딩 문의",
+      "선박 선적 연결 안내"
+    ],
+    "priceVisible": false,
+    "price": null,
+    "cta": {
+      "label": "글로비스 수출 문의",
+      "action": "MOCK_INQUIRY"
+    },
+    "active": true
+  }
+]
