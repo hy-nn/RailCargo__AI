@@ -1,0 +1,39 @@
+{
+  "specId": "CONT-40FT-LCL",
+  "containerType": "40FT",
+  "maxCBM": 60.0,
+  "maxWeightKg": 25000,
+  "confirmationPolicy": {
+    "basis": "VOLUME_ONLY",
+    "thresholdRate": 0.75,
+    "thresholdCBM": 45.0,
+    "statusRule": "currentCBM >= thresholdCBM",
+    "note": "중량은 확정 판단에 사용하지 않음. 중량 초과 여부는 capacityPolicy/closurePolicy에서 별도 체크(boolean)"
+  },
+  "capacityPolicy": {
+    "cbmRule": "currentCBM + requestCBM <= maxCBM",
+    "weightRule": "currentWeightKg + requestWeightKg <= maxWeightKg",
+    "rejectWhenCBMExceeded": true,
+    "rejectWhenWeightExceeded": true
+  },
+  "closurePolicy": {
+    "operator": "OR",
+    "statusRule": "currentCBM >= maxCBM OR currentWeightKg >= maxWeightKg"
+  },
+  "statusValues": [
+    "RECRUITING",
+    "CONFIRMED",
+    "CLOSED"
+  ],
+  "statusPriority": [
+    "CLOSED",
+    "CONFIRMED",
+    "RECRUITING"
+  ],
+  "rationale": {
+    "summary": "40FT 컨테이너 최대 적재량(60CBM)의 75%인 45CBM에 도달하면 공동배차 확정 (CBM 단일 기준)",
+    "confirmationLogic": "CBM_ONLY",
+    "capacityNote": "60CBM 또는 25,000kg 중 하나에 도달하면 추가 예약을 마감",
+    "status": "TEAM_POLICY"
+  }
+}

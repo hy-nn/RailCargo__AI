@@ -1,0 +1,442 @@
+{
+  "policyId": "D2D-OBO-AUTO-TRUCK-202608",
+  "policyName": "오봉역 연계 자동배차 및 거리구간 운임 정책",
+  "policyVersion": "v4.0",
+  "currency": "KRW",
+  "vatIncluded": false,
+  "maximumSupportedDistanceKm": 60,
+  "vehicleAssignmentPolicy": {
+    "selectionMethod": "SMALLEST_VEHICLE_FITTING_WEIGHT_AND_VOLUME",
+    "selectionDescription": "화주가 차량을 선택하지 않고, 화물 중량과 CBM을 모두 수용하는 가장 작은 차량을 자동 배정합니다.",
+    "inputFields": [
+      "cargo.weightKg",
+      "cargo.volumeCBM"
+    ],
+    "selectionRule": "cargo.weightKg <= maxWeightKgInclusive AND cargo.volumeCBM <= maxCBMInclusive",
+    "rules": [
+      {
+        "vehicleCode": "1T",
+        "displayName": "1톤",
+        "maxWeightKgInclusive": 1000,
+        "maxCBMInclusive": 5.0,
+        "capacityNote": "일반적인 적재부피 4~5CBM 기준",
+        "fareVehicleCode": "1T"
+      },
+      {
+        "vehicleCode": "1.4T",
+        "displayName": "1.4톤",
+        "maxWeightKgInclusive": 1400,
+        "maxCBMInclusive": 6.0,
+        "fareVehicleCode": "1.4T"
+      },
+      {
+        "vehicleCode": "2.5T",
+        "displayName": "2.5톤",
+        "maxWeightKgInclusive": 2500,
+        "maxCBMInclusive": 14.0,
+        "fareVehicleCode": "2.5T"
+      },
+      {
+        "vehicleCode": "3.5T",
+        "displayName": "3.5톤",
+        "maxWeightKgInclusive": 3500,
+        "maxCBMInclusive": 17.0,
+        "fareVehicleCode": "3.5T"
+      },
+      {
+        "vehicleCode": "5T",
+        "displayName": "5톤",
+        "maxWeightKgInclusive": 5000,
+        "maxCBMInclusive": 28.0,
+        "fareVehicleCode": "5T"
+      },
+      {
+        "vehicleCode": "5T_FULL_AXLE",
+        "displayName": "5톤 풀축",
+        "maxWeightKgInclusive": 5000,
+        "maxCBMInclusive": 35.0,
+        "fareVehicleCode": "5T_FULL_AXLE",
+        "capacityNote": "최대 중량 5,000kg, 최대 부피 35CBM 기준"
+      },
+      {
+        "vehicleCode": "8T",
+        "displayName": "8톤",
+        "maxWeightKgInclusive": 8000,
+        "maxCBMInclusive": 40.0,
+        "fareVehicleCode": "8T",
+        "capacityNote": "5톤 풀축 35CBM과 11톤 45CBM 사이의 MVP 기준값"
+      },
+      {
+        "vehicleCode": "11T",
+        "displayName": "11톤",
+        "maxWeightKgInclusive": 11000,
+        "maxCBMInclusive": 45.0,
+        "fareVehicleCode": "11T"
+      },
+      {
+        "vehicleCode": "25T",
+        "displayName": "25톤",
+        "maxWeightKgInclusive": 25000,
+        "maxCBMInclusive": 50.0,
+        "fareVehicleCode": "25T"
+      },
+      {
+        "vehicleCode": "TRAILER",
+        "displayName": "추레라",
+        "maxWeightKgInclusive": 25000,
+        "maxCBMInclusive": 60.0,
+        "fareVehicleCode": "TRAILER",
+        "capacityNote": "50CBM 초과 60CBM 이하 화물의 MVP 대체 배차"
+      }
+    ],
+    "overCapacityAction": "MANUAL_QUOTE_OR_SPLIT_SHIPMENT"
+  },
+  "distancePolicy": {
+    "selectionMethod": "FIXED_CITY_AVERAGE_DISTANCE",
+    "originStationId": "ST-OBO",
+    "calculationDescription": "오봉역에서 각 시의 시청 및 주요 산업·물류권역까지의 도로거리 수준을 MVP 시연용으로 평균·반올림한 시별 고정값입니다.",
+    "liveRoutingUsed": false,
+    "distanceBands": [
+      {
+        "bandId": "D10",
+        "minDistanceKmExclusive": 0,
+        "maxDistanceKmInclusive": 10,
+        "displayName": "10km 이내거리"
+      },
+      {
+        "bandId": "D20",
+        "minDistanceKmExclusive": 10,
+        "maxDistanceKmInclusive": 20,
+        "displayName": "20km 이내거리"
+      },
+      {
+        "bandId": "D30",
+        "minDistanceKmExclusive": 20,
+        "maxDistanceKmInclusive": 30,
+        "displayName": "30km 이내거리"
+      },
+      {
+        "bandId": "D60",
+        "minDistanceKmExclusive": 30,
+        "maxDistanceKmInclusive": 60,
+        "displayName": "60km 이내거리"
+      }
+    ],
+    "over60KmAction": "MANUAL_QUOTE"
+  },
+  "farePolicy": {
+    "sourceName": "전국레츠고화물 전국화물운임표",
+    "fareMeaning": "MINIMUM_REFERENCE_FARE",
+    "fareSelectionFormula": "fareTable[distanceBandId][assignedVehicleRule.fareVehicleCode]",
+    "additionalChargeNotice": "시별 평균 고정거리를 적용한 예상 운임이며, 실제 배송 주소와 대기시간·상하차 조건·통행료·특수 작업에 따라 달라질 수 있습니다.",
+    "fareTableWon": {
+      "D10": {
+        "1T": 40000,
+        "1.4T": 50000,
+        "2.5T": 70000,
+        "3.5T": 80000,
+        "5T": 90000,
+        "8T": 130000,
+        "11T": 140000,
+        "18T": 170000,
+        "25T": 180000,
+        "TRAILER": 220000,
+        "5T_FULL_AXLE": 110000
+      },
+      "D20": {
+        "1T": 50000,
+        "1.4T": 60000,
+        "2.5T": 80000,
+        "3.5T": 90000,
+        "5T": 100000,
+        "8T": 140000,
+        "11T": 150000,
+        "18T": 180000,
+        "25T": 200000,
+        "TRAILER": 230000,
+        "5T_FULL_AXLE": 120000
+      },
+      "D30": {
+        "1T": 60000,
+        "1.4T": 70000,
+        "2.5T": 90000,
+        "3.5T": 100000,
+        "5T": 110000,
+        "8T": 150000,
+        "11T": 160000,
+        "18T": 190000,
+        "25T": 220000,
+        "TRAILER": 240000,
+        "5T_FULL_AXLE": 130000
+      },
+      "D60": {
+        "1T": 70000,
+        "1.4T": 80000,
+        "2.5T": 100000,
+        "3.5T": 110000,
+        "5T": 120000,
+        "8T": 160000,
+        "11T": 170000,
+        "18T": 200000,
+        "25T": 230000,
+        "TRAILER": 250000,
+        "5T_FULL_AXLE": 140000
+      }
+    }
+  },
+  "services": [
+    {
+      "serviceId": "D2D-OBO-UIWANG-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "의왕시"
+      },
+      "distanceKm": 7,
+      "distanceBandId": "D10",
+      "distanceBandDisplayName": "10km 이내거리",
+      "serviceAreaRelation": "STATION_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 의왕시까지 평균 7km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-GUNPO-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "군포시"
+      },
+      "distanceKm": 10,
+      "distanceBandId": "D10",
+      "distanceBandDisplayName": "10km 이내거리",
+      "serviceAreaRelation": "ADJACENT_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 군포시까지 평균 10km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-ANYANG-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "안양시"
+      },
+      "distanceKm": 16,
+      "distanceBandId": "D20",
+      "distanceBandDisplayName": "20km 이내거리",
+      "serviceAreaRelation": "ADJACENT_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 안양시까지 평균 16km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-SUWON-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "수원시"
+      },
+      "distanceKm": 22,
+      "distanceBandId": "D30",
+      "distanceBandDisplayName": "30km 이내거리",
+      "serviceAreaRelation": "ADJACENT_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 수원시까지 평균 22km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-GWACHEON-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "과천시"
+      },
+      "distanceKm": 24,
+      "distanceBandId": "D30",
+      "distanceBandDisplayName": "30km 이내거리",
+      "serviceAreaRelation": "ADJACENT_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 과천시까지 평균 24km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-ANSAN-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "안산시"
+      },
+      "distanceKm": 28,
+      "distanceBandId": "D30",
+      "distanceBandDisplayName": "30km 이내거리",
+      "serviceAreaRelation": "ADJACENT_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 안산시까지 평균 28km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-SEONGNAM-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "성남시"
+      },
+      "distanceKm": 34,
+      "distanceBandId": "D60",
+      "distanceBandDisplayName": "60km 이내거리",
+      "serviceAreaRelation": "ADJACENT_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 성남시까지 평균 34km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-YONGIN-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "용인시"
+      },
+      "distanceKm": 43,
+      "distanceBandId": "D60",
+      "distanceBandDisplayName": "60km 이내거리",
+      "serviceAreaRelation": "ADJACENT_CITY",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 용인시까지 평균 43km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    },
+    {
+      "serviceId": "D2D-OBO-HWASEONG-01",
+      "pickupStationId": "ST-OBO",
+      "destinationArea": {
+        "province": "경기도",
+        "city": "화성시"
+      },
+      "distanceKm": 47,
+      "distanceBandId": "D60",
+      "distanceBandDisplayName": "60km 이내거리",
+      "serviceAreaRelation": "EXTENDED_SERVICE_AREA",
+      "vehicleType": "AUTO_BY_WEIGHT_AND_VOLUME",
+      "oneWayFareWon": null,
+      "currency": "KRW",
+      "pricingStatus": "REFERENCE_MINIMUM_FARE",
+      "matchingEnabled": false,
+      "autoAssignmentEnabled": true,
+      "providerDisplayName": "전국레츠고화물 운임표 기준",
+      "priceSource": {
+        "name": "전국레츠고화물 전국화물운임표",
+        "referenceOrigin": "오봉역 출발, 시별 평균 고정거리 적용",
+        "fareTableStatus": "USER_CONFIRMED_REFERENCE",
+        "distanceStatus": "MVP_FIXED_ESTIMATE",
+        "verified": false
+      },
+      "cardMessage": "오봉역에서 화성시까지 평균 47km를 적용하며, 화물 중량과 CBM에 따라 차량을 자동 배정합니다. 실제 배송 주소에 따라 거리와 운임이 달라질 수 있습니다.",
+      "active": true
+    }
+  ],
+  "serviceNotice": "시별 평균 고정거리를 적용한 예상 운임이며, 실제 배송 주소와 대기시간·상하차 조건·통행료·특수 작업에 따라 달라질 수 있습니다."
+}
